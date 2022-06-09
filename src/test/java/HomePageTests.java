@@ -3,42 +3,47 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 public class HomePageTests {
     WebDriver driver;
     HomePage page;
+    public String colourBeforeChanging;
+    public String colourAfterChanging;
 
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://www.pragmaticplay.com/en/");
+        page = new HomePage(driver);
+        page.acceptAgeButtonClick();
     }
 
     @Test
     public void checkIfHeaderMenuItemsChangeColorByCursorMoving() {
-        page = new HomePage(driver);
-        page.acceptAgeButtonClick();
-        page.checkChangingColorHomeItemByMouseover();
-            Assert.assertNotEquals(page.colourBeforeChanging,page.colourAfterChanging);
-            page.checkChangingColorProductsItemByMouseover();
-            Assert.assertEquals(page.colourBeforeChanging,page.colourAfterChanging);
-            page.checkChangingColorClientHubItemByMouseover();
-            Assert.assertNotEquals(page.colourBeforeChanging,page.colourAfterChanging);
-            page.checkChangingColorCompanyItemByMouseover();
-            Assert.assertEquals(page.colourBeforeChanging,page.colourAfterChanging);
-            page.checkChangingColorNewsItemByMouseover();
-            Assert.assertNotEquals(page.colourBeforeChanging,page.colourAfterChanging);
-            page.checkChangingColorContactItemByMouseover();
-            Assert.assertNotEquals(page.colourBeforeChanging,page.colourAfterChanging);
+       List<WebElement> menuElements=page.getMenuElements();
+        for (WebElement element:menuElements){
+            System.out.println(element.getText());
+           colourBeforeChanging= page.getColorItem(element);
+           page.mouseOverElement(element);
+           colourAfterChanging=page.getColorItem(element);
+            Assert.assertNotEquals("The color of "+element.getText()+" was not change after moving over it",colourBeforeChanging,colourAfterChanging);
+        }
+    }
 
-    page.checkChangingColorBingoSubItem();
-    Assert.assertNotEquals(page.colourBeforeChanging,page.colourAfterChanging);
+    @Test
+    public void checkBingoSubMenuItemChangesColorByCursorMoving(){
+        WebElement bingoItem=page.getBingoItemElement();
+        page.selectBingoSubItem();
+        colourBeforeChanging=page.getColorItem(bingoItem);
+        page.mouseOverElement(bingoItem);
+        colourAfterChanging=page.getColorItem(bingoItem);
+        Assert.assertNotEquals("The colour of "+bingoItem.getText()+" was not change after moving on it",colourBeforeChanging,colourAfterChanging);
     }
 
     @After
