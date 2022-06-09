@@ -33,7 +33,6 @@ public class BingoPageTests {
     @Test
     public void checkDuplicateOfElementsInCarouselMenuTest() {
         page.getCountOfElementsInCarouselMenu();
-//        page.getElementsOfCarouselMenu();
         int countOfDuplicates=page.getDuplicateElementsSize();
         Assert.assertEquals("In carousel bloc are present "+countOfDuplicates+" duplicates",0, countOfDuplicates);
         }
