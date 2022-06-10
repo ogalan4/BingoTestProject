@@ -23,20 +23,20 @@ public class BingoPageTests {
         page = new BingoPage(driver);
         page.bingoHeaderSubMenuItemClick();
     }
-
+// Scroll down to the "Our bingo variants" section and check that there are 9 "Bingo theme"
     @Test
     public void checkCountOfElementsInCarouselMenuEqualsNineTest(){
         int countOfElementsInCarouselMenu=page.getCountOfElementsInCarouselMenu();
         Assert.assertEquals("The count of elements in carousel menu equals "+countOfElementsInCarouselMenu+" elements, versus 9",9,countOfElementsInCarouselMenu);
     }
-
+//Check if the elements are not duplicated.
     @Test
     public void checkDuplicateOfElementsInCarouselMenuTest() {
         page.getCountOfElementsInCarouselMenu();
         int countOfDuplicates=page.getDuplicateElementsSize();
         Assert.assertEquals("In carousel bloc are present "+countOfDuplicates+" duplicates",0, countOfDuplicates);
         }
-
+//Verify that the link to the image contains the name of the theme(like Rock'n'Swing, Bingo Blast, Boombox, etc.).
         @Test
         public void checkIfLinkContainsTheNameOfThemeTest(){
              int countOfElements=page.getCountOfElementsInCarouselMenu();

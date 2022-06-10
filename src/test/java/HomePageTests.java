@@ -23,7 +23,7 @@ public class HomePageTests {
         page = new HomePage(driver);
         page.acceptAgeButtonClick();
     }
-
+//Check if all header menu items (Home, Products, Client Hub, Company, News, Contact) are colored when cursor is moved.
     @Test
     public void checkIfHeaderMenuItemsChangeColorByCursorMoving() {
        List<WebElement> menuElements=page.getMenuElements();
@@ -35,7 +35,7 @@ public class HomePageTests {
             Assert.assertNotEquals("The color of "+element.getText()+" was not change after moving over it",colourBeforeChanging,colourAfterChanging);
         }
     }
-
+//Check if "Bingo" option in menu "Products" changes color when cursor is move over.
     @Test
     public void checkBingoSubMenuItemChangesColorByCursorMoving(){
         WebElement bingoItem=page.getBingoItemElement();
