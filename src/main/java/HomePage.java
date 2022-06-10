@@ -16,7 +16,7 @@ public class HomePage {
     private final By acceptAgeButton = By.xpath("//span[contains(text(),'18 years or older')]");
 
     private final By headerMenuItem = By.xpath("//ul[@id='menu-top-menu']/li/a[text()]");
-    //    private final By homeHeaderMenuItem = By.xpath("//a[@title='Home']");
+
     private final By productsHeaderMenuItem = By.xpath("//a[@title='Games']");
 
     private final By bingoHeaderSubMenuItem = By.xpath("//li[@id='menu-item-11081']/a");

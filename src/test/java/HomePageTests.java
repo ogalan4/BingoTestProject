@@ -28,7 +28,6 @@ public class HomePageTests {
     public void checkIfHeaderMenuItemsChangeColorByCursorMoving() {
        List<WebElement> menuElements=page.getMenuElements();
         for (WebElement element:menuElements){
-            System.out.println(element.getText());
            colourBeforeChanging= page.getColorItem(element);
            page.mouseOverElement(element);
            colourAfterChanging=page.getColorItem(element);

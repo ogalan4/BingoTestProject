@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import java.util.*;
 
@@ -17,18 +16,10 @@ public class BingoPage {
         this.driver = driver;
     }
 
-    private final By productsHeaderMenuItem = By.xpath("//a[@title='Games']");
-    private final By bingoHeaderSubMenuItem = By.xpath("//li[@id='menu-item-11081']/a");
     private final By carouselElementsLocator = By.xpath("//div[@class='slick-track']/div");
     private final By carouselCurrentElementTitleLocator = By.xpath("//div[@class='slick-slide slick-current slick-active']");
     private final By carouselCurrentElementLinkLocator = By.xpath("//div[@class='slick-slide slick-current slick-active']//img");
     private final By carouselNavigateRightIconLocator = By.xpath("//div[@class='right-arrow slick-arrow']");
-
-    public void bingoHeaderSubMenuItemClick() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(productsHeaderMenuItem)).build().perform();
-        driver.findElement(bingoHeaderSubMenuItem).click();
-    }
 
     public int getCountOfElementsInCarouselMenu() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;

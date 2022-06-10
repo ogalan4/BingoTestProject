@@ -21,7 +21,6 @@ public class BingoPageTests {
         homePage=new HomePage(driver);
         homePage.acceptAgeButtonClick();
         page = new BingoPage(driver);
-        page.bingoHeaderSubMenuItemClick();
     }
 // Scroll down to the "Our bingo variants" section and check that there are 9 "Bingo theme"
     @Test
